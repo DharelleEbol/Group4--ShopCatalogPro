@@ -10,21 +10,26 @@
 }
 
 /* Layout */
+html, body { height: 100%; margin: 0; }
 body, html, #root { height: 100%; }
 .home {
+  /* ensure vertical stacking and center the content area */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 12px var(--page-side-padding) 60px;
+  align-items: center; /* centers the .container horizontally */
+  padding: 12px 20px 60px;
+  box-sizing: border-box;
 }
 
 .container {
   width: 100%;
-  max-width: var(--page-max);
-  margin: 0 auto;
+  max-width: 1060px; /* adjust to match your design */
+  margin: 0 auto;    /* centers the container */
   box-sizing: border-box;
+  padding: 0 12px;   /* optional inner padding */
 }
 
+/* make wide elements fill only the container, not the whole viewport */
 .topbar,
 .hero-banner,
 .categories,

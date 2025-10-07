@@ -56,7 +56,7 @@ export default function Products() {
 						Shopepy
 					</button>
 
-					<div className="cart" role="button" aria-label="View cart">🛒</div>
+					<div className="cart" role="button" aria-label="View cart" onClick={() => (window.location.href = '/cart')}>🛒</div>
 				</nav>
 
 				<section className="hero">
