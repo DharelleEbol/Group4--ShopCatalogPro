@@ -1,0 +1,251 @@
+:root{
+	--accent-1: #ef7722;
+	--accent-2: #f2b980;
+	--pill-bg: #ffd9b3;
+	--muted: #888;
+
+	/* page width control */
+	--page-max: 1060px; /* width to match the screenshot */
+	--page-side-padding: 20px;
+}
+
+/* Layout */
+body, html, #root { height: 100%; }
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px var(--page-side-padding) 60px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.topbar,
+.hero-banner,
+.categories,
+.sections {
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.hero { margin: 12px 0 }
+.hero-banner {
+  display:flex;
+  gap:16px;
+  align-items:center;
+  background:#fff;
+  border-radius:8px;
+  padding: 12px;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.06);
+}
+.hero-left { flex:1 }
+.badge { background: #ffd54f; padding:6px 8px; border-radius:6px; font-weight:700; display:inline-block }
+.hero-left h2 { margin:8px 0 4px }
+.hero-left p { color:var(--muted); margin:0 }
+.hero-right { width:240px; height:110px; background:linear-gradient(90deg,#6dd5ed,#2193b0); border-radius:8px }
+
+/* Categories */
+.categories { display:flex; gap:12px; overflow-x:auto; padding:12px 0; margin:8px 0 }
+.pill { background:var(--pill-bg); border:0; padding:8px 14px; border-radius:20px; cursor:pointer; white-space:nowrap }
+
+/* Sections */
+.sections { margin-top:10px }
+.section { margin-bottom:28px }
+.section h3 { margin:8px 0; font-size:1rem }
+.row-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-right: 80px; /* reserve space for the arrow box so it doesn't overlap content */
+  box-sizing: border-box;
+}
+
+/* make the product row a predictable height so the arrow centers correctly */
+.products-row {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 8px 0;
+  width: calc(100% - 56px);
+  box-sizing: border-box;
+  min-height: 160px; /* ensures arrow centers with product cards */
+}
+
+/* product cards keep consistent height */
+.product-card {
+  width: 180px;
+  flex: 0 0 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 140px;
+}
+
+/* arrow: centered box aligned to the middle of the row */
+.arrow {
+  position: absolute;
+  right: 12px;
+  top: 44%; /* moved up slightly to better align with product image */
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  width: 56px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.07);
+  color: #777;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+  padding: 0;
+}
+
+/* reuse .product-card styling already present */
+.product-card {
+  width: 180px;
+  flex: 0 0 180px;
+}
+.product-image { height:96px; background:#ddd; border-radius:8px }
+.product-meta { margin-top:8px }
+.product-name { font-size:0.9rem; color:#333 }
+.product-price { color:#666; font-size:0.85rem }
+
+/* make logo keyboard/assistive accessible and remove hover effects while keeping press feedback */
+.logo {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* explicitly neutralize any hover styling from existing rules */
+.logo:hover,
+.logo:focus {
+  background: transparent !important;
+  transform: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* small active/pressed feedback to show it's pressable */
+.logo:active {
+  transform: translateY(1px);
+  opacity: 0.95;
+}
+
+/* Topbar layout: make room for centered pill nav and keep logo/cart at ends */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #EF7722 10%, #f2b980 100%);
+  justify-content: space-between;
+}
+
+/* let the pill strip take available space and be horizontally scrollable */
+.nav-cats {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  flex: 1 1 auto;
+  padding: 6px 8px;
+  margin: 0 12px;
+  align-items: center;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* keep pill visuals consistent in the topbar */
+.pill {
+  background: var(--pill-bg);
+  border: 0;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 600;
+  color: #6a3d00; /* darker text against pill bg */
+}
+
+/* make sure logo text stays white and doesn't change on hover/focus */
+.logo {
+  background: transparent !important; /* make the button fully transparent */
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 700;
+  border: none;
+  box-shadow: none !important;
+}
+
+/* neutralize hover visuals while keeping it keyboard-pressable */
+.logo:hover,
+.logo:focus {
+  background: var(--accent-1);
+  color: white !important;
+  transform: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Make horizontal scrollbars white and subtle (WebKit + Firefox) */
+.products-row,
+.categories,
+.nav-cats {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #e6e6e6 #ffffff;
+}
+
+/* WebKit browsers */
+.products-row::-webkit-scrollbar,
+.categories::-webkit-scrollbar,
+.nav-cats::-webkit-scrollbar {
+  height: 10px;
+  background: #ffffff; /* track */
+}
+
+.products-row::-webkit-scrollbar-track,
+.categories::-webkit-scrollbar-track,
+.nav-cats::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.products-row::-webkit-scrollbar-thumb,
+.categories::-webkit-scrollbar-thumb,
+.nav-cats::-webkit-scrollbar-thumb {
+  background: #e6e6e6; /* thumb */
+  border-radius: 8px;
+  border: 2px solid #ffffff; /* creates a white gap so the thumb reads as floating on white */
+}
+
+/* small screens tweak */
+@media (max-width:900px) {
+  .product-card { width: 140px; flex: 0 0 140px; }
+  .products-row { width: calc(100% - 48px); }
+  .row-wrap { padding-right: 52px; }
+  .arrow { height: 48px; width: 48px; right: 6px; }
+}
+@media (max-width:640px){
+	.hero-right { width:140px; height:80px }
+	.product-card { width:130px; flex: 0 0 130px }
+	.products-row { width: calc(100% - 40px); }
+}
+
