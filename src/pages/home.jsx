@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
 import '../styles/homeStyle.css';
 
 const categories = [
@@ -15,9 +15,21 @@ const categories = [
 ];
 
 // ✅ Reusable Product Card
-function ProductCard({ name, price, image }) {
+function ProductCard({ id, name, price, image }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/productDetails/${id}`);
+  };
+
   return (
-    <div className="product-card" role="group" aria-label={name}>
+    <div
+      className="product-card"
+      role="group"
+      aria-label={name}
+      onClick={handleClick}
+      style={{ cursor: 'pointer' }}
+    >
       <div className="product-image">
         <img src={image} alt={name} />
       </div>
@@ -28,6 +40,36 @@ function ProductCard({ name, price, image }) {
     </div>
   );
 }
+
+export const womensProducts = [
+  { id: 1, name: 'Floral Dress', price: '₱499', image: '/picturesproduct/dress.jpg' },
+  { id: 2, name: 'Denim Jacket', price: '₱799', image: '/picturesproduct/jacket.jpg' },
+  { id: 3, name: 'Summer Top', price: '₱299', image: '/picturesproduct/summer.jpg' },
+  { id: 4, name: 'Casual Pant', price: '₱699', image: '/picturesproduct/pants.jpg' },
+	{ id: 5, name: 'Night Gown', price: '₱699', image: '/picturesproduct/nightgown.jpg' },
+	{ id: 6, name: 'Bra', price: '₱100', image: '/picturesproduct/bra.jpg' },
+	{ id: 7, name: 'Polo shirt', price: '₱200', image: '/picturesproduct/polo.jpg'},
+	{ id: 8, name: 'Headband', price: '₱20', image: '/picturesproduct/headband.jpg'},
+	{ id: 9, name: 'Abaya', price: '₱999', image: '/picturesproduct/abaya.jpg'},
+	{ id: 10, name: 'Skirt', price: '₱699', image: '/picturesproduct/skirt.jpg'},
+  { id: 11, name: 'Jogging Pants', price: '₱299', image: '/picturesproduct/joggingpants.jpg'},
+  { id: 12, name: 'Hoodie', price: '₱399', image: '/picturesproduct/hoodie.jpg'},
+];
+
+const mobilesProducts = [
+  { id: 1, name: 'Charger', price: '₱99', image: '/picturesproduct/charger.jpg'},
+  { id: 2, name: 'Earphone', price: '₱199', image: '/picturesproduct/earphone.jpg' },
+  { id: 3, name: 'Smartwatch', price: '₱2,999', image: '/picturesproduct/smartwatch.jpg' },
+  { id: 4, name: 'Laptop', price: '₱12,999', image: '/picturesproduct/laptop.jpg' },
+	{ id: 5, name: 'KeyBoard', price: '1,299', image: '/picturesproduct/keyboard.jpg' },
+	{ id: 6, name: 'Wireless Earbuds', price: '₱499', image: '/picturesproduct/wirelessearphone.jpg' },
+	{ id: 7, name: 'iPhone', price: '₱34,999', image: '/picturesproduct/iphone.jpg' },
+	{ id: 8, name: 'Headphone', price: '₱599', image: '/picturesproduct/headphone.jpg' },
+	{ id: 9, name: 'Case', price: '₱99', image: '/picturesproduct/case.jpg' },
+	{ id: 10, name: 'Tablet Pro', price: '₱12,499', image: '/picturesproduct/charger.jpg' },
+  { id: 11, name: 'Camera Protector', price: '₱999', image: '/picturesproduct/cameraprotector.jpg' },
+  { id: 12, name: 'Mouse', price: '₱699', image: '/picturesproduct/mouse.jpg' },
+];
 
 export default function Products() {
   const location = useLocation();
@@ -47,37 +89,6 @@ export default function Products() {
     const amount = el.clientWidth * 0.8 * dir;
     el.scrollBy({ left: amount, behavior: 'smooth' });
   };
-
-  
-  const womensProducts = [
-    { name: 'Floral Dress', price: '₱499', image: '/picturesproduct/dress.jpg' },
-    { name: 'Denim Jacket', price: '₱799', image: '/picturesproduct/jacket.jpg' },
-    { name: 'Summer Top', price: '₱299', image: '/picturesproduct/summer.jpg' },
-    { name: 'Casual Pant', price: '₱699', image: '/picturesproduct/pants.jpg' },
-	{ name: 'Night Gown', price: '₱699', image: '/picturesproduct/nightgown.jpg' },
-	{ name: 'Bra', price: '₱100', image: '/picturesproduct/bra.jpg' },
-	{ name: 'Polo shirt', price: '₱200', image: '/picturesproduct/polo.jpg'},
-	{ name: 'Headband', price: '₱20', image: '/picturesproduct/headband.jpg'},
-	{ name: 'Abaya', price: '₱999', image: '/picturesproduct/abaya.jpg'},
-	{ name: 'Skirt', price: '₱699', image: '/picturesproduct/skirt.jpg'},
-  { name: 'Jogging Pants', price: '₱299', image: '/picturesproduct/joggingpants.jpg'},
-  { name: 'Hoodie', price: '₱399', image: '/picturesproduct/hoodie.jpg'},
-  ];
-
-  const mobilesProducts = [
-    { name: 'Charger', price: '₱99', image: '/picturesproduct/charger.jpg'},
-    { name: 'Earphone', price: '₱199', image: '/picturesproduct/earphone.jpg' },
-    { name: 'Smartwatch', price: '₱2,999', image: '/picturesproduct/smartwatch.jpg' },
-    { name: 'Laptop', price: '₱12,999', image: '/picturesproduct/laptop.jpg' },
-	{ name: 'KeyBoard', price: '1,299', image: '/picturesproduct/keyboard.jpg' },
-	{ name: 'Wireless Earbuds', price: '₱499', image: '/picturesproduct/wirelessearphone.jpg' },
-	{ name: 'iPhone', price: '₱34,999', image: '/picturesproduct/iphone.jpg' },
-	{ name: 'Headphone', price: '₱599', image: '/picturesproduct/headphone.jpg' },
-	{ name: 'Case', price: '₱99', image: '/picturesproduct/case.jpg' },
-	{ name: 'Tablet Pro', price: '₱12,499', image: '/picturesproduct/charger.jpg' },
-  { name: 'Camera Protector', price: '₱999', image: '/picturesproduct/cameraprotector.jpg' },
-  { name: 'Mouse', price: '₱699', image: '/picturesproduct/mouse.jpg' },
-  ];
 
   return (
     <main className="home">
@@ -128,7 +139,8 @@ export default function Products() {
               <div className="products-row" ref={rowRefs.womens}>
                 {womensProducts.map((item, i) => (
                   <ProductCard
-                    key={i}
+                    key={item.id}
+                    id={item.id}
                     name={item.name}
                     price={item.price}
                     image={item.image}
@@ -152,7 +164,8 @@ export default function Products() {
               <div className="products-row" ref={rowRefs.mobiles}>
                 {mobilesProducts.map((item, i) => (
                   <ProductCard
-                    key={i}
+                    key={item.id}
+                    id={item.id}
                     name={item.name}
                     price={item.price}
                     image={item.image}
