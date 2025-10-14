@@ -10,9 +10,24 @@ export default function ProductDetails() {
 
 	if (!product) {
 		return (
-			<main className="product-details">
-				<h1>Product Not Found</h1>
-			</main>
+			<>
+				<nav className="topbar" role="navigation" aria-label="Main navigation">
+					<button
+						type="button"
+						className="logo"
+						aria-label="Shopepy homepage"
+						onClick={() => (window.location.href = '/')}
+					>
+						Shopepy
+					</button>
+					<div className="cart" role="button" aria-label="View cart">
+						🛒
+					</div>
+				</nav>
+				<main className="product-details">
+					<h1>Product Not Found</h1>
+				</main>
+			</>
 		)
 	}
 
@@ -20,40 +35,58 @@ export default function ProductDetails() {
 	const handleMinus = () => setQuantity(q => (q > 1 ? q - 1 : 1))
 
 	return (
-		<main className="product-details">
-			<div className="main-section">
-				<img src={product.image} alt={product.name} />
-				<div className="product-info">
-					<div className="brand">{product.brand || "Brand Name"}</div>
-					<h2>{product.name}</h2>
-					<div className="rating">⭐ {product.rating || "4.5"} ({product.reviews || "120"})</div>
-					<div className="description">
-						{product.description ? product.description : "No description available."}
-					</div>
-					<div className="price">{product.price}</div>
-					<div className="quantity-section">
-						<button onClick={handleMinus}>-</button>
-						<span>{quantity}</span>
-						<button onClick={handleAdd}>+</button>
-						<button className="add-to-cart">Add To Cart</button>
+		<>
+			<nav className="topbar" role="navigation" aria-label="Main navigation">
+				<button
+					type="button"
+					className="logo"
+					aria-label="Shopepy homepage"
+					onClick={() => (window.location.href = '/')}
+				>
+					⇦
+				</button>
+				<div className="cart" role="button" aria-label="View cart">
+					🛒
+				</div>
+			</nav>
+			<main className="product-details">
+				<div className="main-section">
+					<img src={product.image} alt={product.name} />
+					<div className="product-info">
+						<div className="brand">{product.brand || "Brand Name"}</div>
+						<h2>{product.name}</h2>
+						<div className="rating">⭐ {product.rating || "4.5"} ({product.reviews || "120"})</div>
+						<div className="description">
+							{product.description ? product.description : "Product Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "}
+						</div>
+						<div className="price">{product.price}</div>
+						<div className="actions-row">
+							<div className="quantity-section">
+								<button onClick={handleMinus}>-</button>
+								<span>{quantity}</span>
+								<button onClick={handleAdd}>+</button>
+							</div>
+							<div className="add-to-cart-section">
+								<button className="add-to-cart">Add To Cart</button>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<h3>Related Products</h3>
-			<div className="related-products">
-				{womensProducts
-					.filter(p => p.id !== product.id)
-					.slice(0, 5)
-					.map(related => (
-						<div key={related.id} className="related-card">
-							<img src={related.image} alt={related.name} />
-							<p>{related.name}</p>
-							<p className="product-price">{related.price}</p>
-						</div>
-					))}
-					
-			</div>
-		</main>
+				<h3>Related Products</h3>
+				<div className="related-products">
+					{womensProducts
+						.filter(p => p.id !== product.id)
+						.slice(0, 5)
+						.map(related => (
+							<div key={related.id} className="related-card">
+								<img src={related.image} alt={related.name} />
+								<p>{related.name}</p>
+								<p className="product-price">{related.price}</p>
+							</div>
+						))}
+				</div>
+			</main>
+		</>
 	)
 }
 

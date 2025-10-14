@@ -56,7 +56,7 @@ export const womensProducts = [
   { id: 12, name: 'Hoodie', price: '₱399', image: '/picturesproduct/hoodie.jpg'},
 ];
 
-const mobilesProducts = [
+export const mobilesProducts = [
   { id: 1, name: 'Charger', price: '₱99', image: '/picturesproduct/charger.jpg'},
   { id: 2, name: 'Earphone', price: '₱199', image: '/picturesproduct/earphone.jpg' },
   { id: 3, name: 'Smartwatch', price: '₱2,999', image: '/picturesproduct/smartwatch.jpg' },
